@@ -71,16 +71,8 @@ function getCityByDep($DepNum){
     return $citysDep;
 }
 
-function getCityByDep($DepNum){
-    $data = csvToArray('villes_france.csv');
-    $citysDep = [];
-    foreach($data as $city){
-        if((string)$DepNum == $city[1]){
-            var_dump($city[2]);
-            array_push($citysDep,$city[5]);
-        }
-    }
-    return $citysDep;
+function getDay($date){
+    return $date;
 }
-echo('<pre>');
-var_dump(getCityByDep(02));
+//echo('<pre>');
+var_dump(getDay(Date('2023-03-25')));

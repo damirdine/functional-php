@@ -76,5 +76,21 @@ function getDay($date){
     return datefmt_format( $fmt , strtotime($date));
 }
 
-//echo('<pre>');
-var_dump(getDay('2023-03-25'));
+function isOpen($parkName){
+    $rows = array_map(function($v){return str_getcsv($v, ";");}, file('opr.csv'));
+    $header = array_shift($rows);
+    $data = [];
+    foreach($rows as $row) {
+        $data[] = array_combine($header, $row);
+    }
+    ///---- 
+    foreach ($data as $park){
+        if($park['nom_parking']==$parkName && $park['Etat']==1){
+            return true;
+        }
+    }
+    return false;
+
+}
+echo('<pre>');
+var_dump(isOpen('Parking Gare Wodlie'));

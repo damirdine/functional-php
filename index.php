@@ -122,7 +122,6 @@ function MostPay(){
     require('tableau_datas.php');
     $salaryEmployees = [];
     foreach($tableau as $city){
-        $phrase  = $city[5];
         $toReplace = array("$", ",");
         $replacement   = array("", "");
         $salary = (int)str_replace($toReplace, $replacement, $city[5]);
@@ -138,7 +137,6 @@ function MostPay(){
             return $employee[0];
         }
     }
-    return max($cityEmployees);
 }
 echo('<pre>');
 var_dump(MostPay());

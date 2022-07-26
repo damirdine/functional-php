@@ -85,12 +85,28 @@ function isOpen($parkName){
     }
     ///---- 
     foreach ($data as $park){
-        if($park['nom_parking']==$parkName && $park['Etat']==1){
+        if($park['nom_parking']==$parkName && $park['Etat']!="0"){
             return true;
         }
     }
     return false;
 
 }
+function availablePlace($parkName){
+    $rows = array_map(function($v){return str_getcsv($v, ";");}, file('opr.csv'));
+    $header = array_shift($rows);
+    $data = [];
+    foreach($rows as $row) {
+        $data[] = array_combine($header, $row);
+    }
+    return $data;
+    ///---- 
+    foreach ($data as $park){
+        if($park['nom_parking']==$parkName && $park['Etat']!="0"){
+            return (int)$park['Libre'];
+        }
+    }
+    return false;
+}
 echo('<pre>');
-var_dump(isOpen('Parking Gare Wodlie'));
+var_dump(availablePlace('Parking Centre Opéra Broglie'));

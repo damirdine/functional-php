@@ -99,7 +99,6 @@ function availablePlace($parkName){
     foreach($rows as $row) {
         $data[] = array_combine($header, $row);
     }
-    return $data;
     ///---- 
     foreach ($data as $park){
         if($park['nom_parking']==$parkName && $park['Etat']!="0"){
@@ -108,5 +107,17 @@ function availablePlace($parkName){
     }
     return false;
 }
+
+function NbrEmployees($cityName){
+    require('tableau_datas.php');
+    $cityEmployees = [];
+    foreach($tableau as $city){
+        if($city[2]==$cityName){
+            array_push($cityEmployees,$city[2]);
+        }
+    }
+    return count($cityEmployees);
+}
+
 echo('<pre>');
-var_dump(availablePlace('Parking Centre Opéra Broglie'));
+var_dump(NbrEmployees('London'));

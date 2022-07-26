@@ -457,5 +457,4 @@ $tableau= [
             "$112,000"
         ]
     ];
-	print_r($tableau);
 ?>

@@ -118,6 +118,27 @@ function NbrEmployees($cityName){
     }
     return count($cityEmployees);
 }
-
+function MostPay(){
+    require('tableau_datas.php');
+    $salaryEmployees = [];
+    foreach($tableau as $city){
+        $phrase  = $city[5];
+        $toReplace = array("$", ",");
+        $replacement   = array("", "");
+        $salary = (int)str_replace($toReplace, $replacement, $city[5]);
+        array_push($salaryEmployees,$salary);
+    }
+    $maxSalary =  max($salaryEmployees);
+    foreach($tableau as $employee){
+        $phrase  = $employee[5];
+        $healthy = array("$", ",");
+        $yummy   = array("", "");
+        $newphrase = (int)str_replace($healthy, $yummy, $phrase);
+        if($maxSalary==$newphrase){
+            return $employee[0];
+        }
+    }
+    return max($cityEmployees);
+}
 echo('<pre>');
-var_dump(NbrEmployees('London'));
+var_dump(MostPay());

@@ -72,7 +72,9 @@ function getCityByDep($DepNum){
 }
 
 function getDay($date){
-    return $date;
+    $fmt = new IntlDateFormatter("fr_FR" ,0,0,NULL,NULL,"EEEE");
+    return datefmt_format( $fmt , strtotime($date));
 }
+
 //echo('<pre>');
-var_dump(getDay(Date('2023-03-25')));
+var_dump(getDay('2023-03-25'));
